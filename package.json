@@ -1,0 +1,19 @@
+{
+  "name": "nightwatch_integration_tests",
+  "scripts": {
+  	"test": "date;grunt pom"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:regentmarkets/nightwatch_integration_tests.git"
+  },
+  "author": "Binary.com",
+  "license": "Apache License 2.0",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-junit-report": "^0.0.4",
+    "grunt-shell": "^1.1.1",
+    "nightwatch": "^0.8.*",
+    "time-grunt": "^1.*"
+  }
+}
