@@ -1,7 +1,8 @@
 {
   "name": "nightwatch_integration_tests",
   "scripts": {
-  	"test": "date;grunt pom"
+  	"test": "date;grunt crossbrowser",
+    "nightwatch": "./node_modules/.bin/nightwatch -c nightwatch.json --env browserstack"
   },
   "repository": {
     "type": "git",
