@@ -4,7 +4,7 @@
     ],
     "page_objects_path": "pages/",
     "output_folder": "reports/",
-    "globals_path": "globals.js",
+    "globals_path": "./data/dev.js",
     "custom_commands_path": "commands/",
     "custom_assertions_path": "assertions/",
     "selenium": {
@@ -19,118 +19,8 @@
         }
     },
     "test_settings": {
-        "account_bs": {
-            "launch_url": "",
-            "selenium_port": 80,
-            "selenium_host": "hub.browserstack.com",
-            "silent": true,
-            "screenshots": {
-                "enabled": false,
-                "path": ""
-            },
-            "filter": "/pom/account/*",
-            "desiredCapabilities": {
-                "os": "Windows",
-                "os_version": "7",
-                "browser": "Chrome",
-                "javascriptEnabled": true,
-                "acceptSslCerts": true,
-                "browserstack.user": "jeanyvessireau1",
-                "browserstack.key": "z4iYmEkuPiy7QwNE4pE3",
-                "browserstack.local": "false",
-                "browserstack.debug": "true"
-            }
-        },
-        "myaccount_bs": {
-            "launch_url": "",
-            "selenium_port": 80,
-            "selenium_host": "hub.browserstack.com",
-            "silent": true,
-            "screenshots": {
-                "enabled": false,
-                "path": ""
-            },
-            "filter": "/pom/myaccount/*",
-            "desiredCapabilities": {
-                "os": "Windows",
-                "os_version": "7",
-                "browser": "Chrome",
-                "javascriptEnabled": true,
-                "acceptSslCerts": true,
-                "browserstack.user": "jeanyvessireau1",
-                "browserstack.key": "z4iYmEkuPiy7QwNE4pE3",
-                "browserstack.local": "false",
-                "browserstack.debug": "true"
-            }
-        },
-        "cashier_bs": {
-            "launch_url": "",
-            "selenium_port": 80,
-            "selenium_host": "hub.browserstack.com",
-            "silent": true,
-            "screenshots": {
-                "enabled": false,
-                "path": ""
-            },
-            "filter": "/pom/cashier/*",
-            "desiredCapabilities": {
-                "os": "Windows",
-                "os_version": "7",
-                "browser": "Chrome",
-                "javascriptEnabled": true,
-                "acceptSslCerts": true,
-                "browserstack.user": "jeanyvessireau1",
-                "browserstack.key": "z4iYmEkuPiy7QwNE4pE3",
-                "browserstack.local": "false",
-                "browserstack.debug": "true"
-            }
-        },
-        "resources_bs": {
-            "launch_url": "",
-            "selenium_port": 80,
-            "selenium_host": "hub.browserstack.com",
-            "silent": true,
-            "screenshots": {
-                "enabled": false,
-                "path": ""
-            },
-            "filter": "/pom/resources/*",
-            "desiredCapabilities": {
-                "os": "Windows",
-                "os_version": "7",
-                "browser": "Chrome",
-                "javascriptEnabled": true,
-                "acceptSslCerts": true,
-                "browserstack.user": "jeanyvessireau1",
-                "browserstack.key": "z4iYmEkuPiy7QwNE4pE3",
-                "browserstack.local": "false",
-                "browserstack.debug": "true"
-            }
-        },
-        "trading_bs": {
-            "launch_url": "",
-            "selenium_port": 80,
-            "selenium_host": "hub.browserstack.com",
-            "silent": true,
-            "screenshots": {
-                "enabled": false,
-                "path": ""
-            },
-            "filter": "/pom/trading/*",
-            "desiredCapabilities": {
-                "os": "Windows",
-                "os_version": "7",
-                "browser": "Chrome",
-                "javascriptEnabled": true,
-                "acceptSslCerts": true,
-                "browserstack.user": "jeanyvessireau1",
-                "browserstack.key": "z4iYmEkuPiy7QwNE4pE3",
-                "browserstack.local": "false",
-                "browserstack.debug": "true"
-            }
-        },
         "browserstack": {
-            "launch_url": "",
+            "launch_url": "http://hub.browserstack.com",
             "selenium_port": 80,
             "selenium_host": "hub.browserstack.com",
             "silent": true,
@@ -152,7 +42,7 @@
             }
         },
         "firefox": {
-            "launch_url": "",
+            "launch_url": "http://hub.browserstack.com",
             "selenium_port": 80,
             "selenium_host": "hub.browserstack.com",
             "silent": true,
@@ -173,7 +63,7 @@
             }
         },
         "chrome": {
-            "launch_url": "",
+            "launch_url": "http://hub.browserstack.com",
             "selenium_port": 80,
             "selenium_host": "hub.browserstack.com",
             "silent": true,
@@ -194,7 +84,7 @@
             }
         },
         "ie": {
-            "launch_url": "",
+            "launch_url": "http://hub.browserstack.com",
             "selenium_port": 80,
             "selenium_host": "hub.browserstack.com",
             "silent": true,
@@ -204,7 +94,7 @@
             },
             "desiredCapabilities": {
                 "os": "Windows",
-                "os_version": "7",
+                "os_version": "8",
                 "browserName": "IE",
                 "javascriptEnabled": true,
                 "acceptSslCerts": true,
@@ -215,7 +105,7 @@
             }
         },
         "android": {
-            "launch_url": "",
+            "launch_url": "http://hub.browserstack.com",
             "selenium_port": 80,
             "selenium_host": "hub.browserstack.com",
             "silent": true,
@@ -235,7 +125,7 @@
             }
         },
         "ios": {
-            "launch_url": "",
+            "launch_url": "http://hub.browserstack.com",
             "selenium_port": 80,
             "selenium_host": "hub.browserstack.com",
             "silent": true,
@@ -257,7 +147,7 @@
         },
 
         "edge": {
-            "launch_url": "",
+            "launch_url": "http://hub.browserstack.com",
             "selenium_port": 80,
             "selenium_host": "hub.browserstack.com",
             "silent": true,
@@ -278,7 +168,7 @@
             }
         },
         "local": {
-            "launch_url": "",
+            "launch_url": "http://hub.browserstack.com",
             "selenium_port": 4444,
             "selenium_host": "localhost",
             "silent": true,
