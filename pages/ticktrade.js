@@ -1,7 +1,7 @@
-module.exports = function(browser) {
+module.exports = function(browser){
     return {
-        visit: function() {
-            var data = browser.globals.pages.portfolio;
+        trade: function(){
+            var data = browser.globals.pages.ticktrade;
             var login = browser.globals.pages.login;
             return browser
                 .verifyLogin(login.token,function(result){
@@ -10,12 +10,11 @@ module.exports = function(browser) {
                 .url(data.url)
                 .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.tokenInput)
-                .verify.elementPresent('table')
-                .verify.containsText('table','Ref')
-                .verify.containsText('table','Indicative')
-                .verify.containsText('table','Purchase')
+                .verify.elementNotPresent(data.modalClass)
+                .click(data.purchaseButton)
+                .waitForElementVisible(data.modalClass, 3000)
+                .verify.elementPresent(data.modalClass)
 
         },
     };
-
 }
