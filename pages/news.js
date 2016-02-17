@@ -10,7 +10,7 @@ module.exports = function(browser) {
                 .url(data.url)
                 .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.tokenInput)
-                .verify.elementPresent('.article-preview')
+                .verify.elementPresent(data.articleClass)
         },
     };
 
