@@ -10,6 +10,7 @@ module.exports = function(browser){
                 .url(data.url)
                 .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.tokenInput)
+                .verify.elementNotPresent(data.modalClass)
                 .click(data.purchaseButton)
                 .waitForElementVisible(data.modalClass, 3000)
                 .verify.elementPresent(data.modalClass)
