@@ -27,7 +27,7 @@ module.exports = {
             url: "https://app.binary.com/#/settings",
         },
         workspace: {
-            url: "https://app.binary.com/#/workspace",
+            url: "https://app.binary.com/#/",
         },
         statement:{
             url: "https://app.binary.com/#/statement",
