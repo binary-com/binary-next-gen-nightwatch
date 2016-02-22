@@ -10,8 +10,7 @@ module.exports = function(browser) {
                 .url(data.url)
                 .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.tokenInput)
-                .verify.elementPresent('.workspace-panel')
-                .verify.elementPresent('.trade-chart')
+                .verify.elementPresent('.workspace-panel, .trade-chart')
         },
     };
 

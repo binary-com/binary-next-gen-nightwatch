@@ -8,7 +8,7 @@ module.exports = function(browser) {
                         console.log("The login is successful");
                     })
                     .verify.elementNotPresent('.errorfield')
-                    .verify.elementPresent('#header')
+                    .verify.elementPresent('#header , .tick-trade-mobile')
         },
         loginFailure: function(){
             var data = browser.globals;
@@ -21,7 +21,7 @@ module.exports = function(browser) {
                     })
                     .verify.elementPresent(login.errorClass)
                     .verify.containsText('.errorfield span','Access denied')
-                    .verify.elementNotPresent('#header')
+                    .verify.elementNotPresent('#header , .tick-trade-mobile')
         }
 
     };
