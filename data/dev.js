@@ -1,8 +1,9 @@
 module.exports = {
     username : "username",
     password: "password",
-    token: "qDI5nKbqsIfK7da",
+    token: "Smuz4jQ0RZr99rD",
     launch_url: "https://app.binary.com",
+    signout_url: "https://app.binary.com/#/signout",
     isMobile: false,
     pages:{
         login:{
@@ -11,7 +12,7 @@ module.exports = {
             languageSelect: 'select',
             errorClass: '.errorfield',
             createAccountButton: 'a.btn-secondary',
-            token: "qDI5nKbqsIfK7da"
+            token: "Smuz4jQ0RZr99rD"
         },
         watchlist:{
             url: "https://app.binary.com/#/watchlist",
