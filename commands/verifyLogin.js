@@ -3,6 +3,8 @@ exports.command = function(token,callback){
     var data = this.globals.pages.login;
 
     this
+        .url(this.globals.logout_url)
+        .waitForElementVisible('body', 5000)
         .url(this.globals.launch_url)
         .verify.elementPresent(data.tokenInput)
         .setValue(data.tokenInput, token)
