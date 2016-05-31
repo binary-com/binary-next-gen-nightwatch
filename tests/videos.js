@@ -1,7 +1,14 @@
 module.exports = {
-    'visit': function(browser) {
+    tags: ['videos'],
+    'mobile device visit': function(browser) {
         browser
-            .page.videos().visit()
+            .page.videos().mobileVisit()
+    },
+    'Desktop device visit': function(browser) {
+        browser
+            .page.videos().desktopVisit()
             .end()
     }
+    
+    
 };

@@ -1,7 +1,8 @@
 module.exports = {
+    tags: ['dailyprices'],
     'visit': function(browser) {
         browser
-            .page.workspace().visit()
+            .page.dailyprices().visit()
             .end()
     }
 };

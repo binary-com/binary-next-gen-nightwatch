@@ -1,16 +1,18 @@
-exports.command = function(token, callback){
-    const element = this.globals.pages.login;
+exports.command = function(username, callback){
+    var element = this.globals.pages;
     callback = callback || function(){};
-
     this
-        .waitForElementPresent(element.tokenInput, 5000)
-        .verify.elementPresent(element.tokenInput)
-        .setValue(element.tokenInput, token)
-        .click(element.signinButton)
+        .waitForElementPresent(element.login.emailTextBox, 1000)
+        .waitForElementPresent(element.login.passwordTextBox, 1000)
+        .setValue(element.login.emailTextBox, username)
+        .setValue(element.login.passwordTextBox, element.login.password)
+        .waitForElementVisible('button[id=' + element.login.signinButton + ']', 1000)
+        .click('button[id=' + element.login.signinButton + ']')
+        .keys(['\uE015', '\uE006'])
         .pause(1000)
-        .execute(function(token) {
-            return (!!document.getElementById(element.tokenInput));
-        },[token],function(result){
+        .execute(function() {
+            return (!!document.getElementById(element.login.emailTextBox));
+        },[username], function(result){
             callback.call(this,result);
         });
 

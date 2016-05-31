@@ -1,4 +1,5 @@
 module.exports = {
+    tags: ['account'],
     'Login Success': function(browser) {
         browser
             .page.account().loginSuccess()

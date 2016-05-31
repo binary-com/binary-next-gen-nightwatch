@@ -1,8 +1,8 @@
 module.exports = {
-    tags: ['settings'],
+    tags: ['details'],
     'visit': function(browser) {
         browser
-            .page.settings().visit()
+            .page.details().visit()
             .end()
     }
 };

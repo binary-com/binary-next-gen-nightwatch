@@ -1,7 +1,8 @@
 module.exports = {
+    tags: ['mobiletrade'],
     'visit': function(browser) {
         browser
-            .page.watchlist().visit()
+            .page.mobiletrade().trade()
             .end()
     }
 };
