@@ -4,14 +4,19 @@ module.exports = function(browser) {
             var data = browser.globals.pages.settings;
             var login = browser.globals.pages.login;
             return browser
-                .verifyLogin(login.token,function(result){
+                .verifyLogin(login.username,function(result){
                     console.log("Login verification ");
                 })
                 .url(data.url)
                 .waitForElementVisible('body', 3000)
-                .verify.elementNotPresent(login.tokenInput)
-                .verify.elementPresent('span.radio-item')
-                .verify.elementPresent('[role=tabs]')
+                .verify.elementNotPresent(login.emailTextBox)
+                .click('label#hamburger-btn')
+                .keys(['\uE015', '\uE006'])
+                .waitForElementVisible('nav.sidebar', 1000)
+                .verify.containsText('nav.sidebar','Trade')
+                .verify.containsText('nav.sidebar','Open Positions')
+                .verify.containsText('nav.sidebar','Statement')
+                .verify.containsText('nav.sidebar','News')
         },
     };
 

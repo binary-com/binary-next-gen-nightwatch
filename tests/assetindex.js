@@ -1,13 +1,12 @@
 module.exports = {
-    tags: ['news'],
+    tags: ['assetindex'],
     'mobile device visit': function(browser) {
         browser
-            .page.news().mobileVisit()
+            .page.assetindex().mobileVisit()
     },
     'Desktop device visit': function(browser) {
         browser
-            .page.news().desktopVisit()
+            .page.assetindex().desktopVisit()
             .end()
     }
-    
 };

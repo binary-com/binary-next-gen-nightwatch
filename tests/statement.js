@@ -1,7 +1,12 @@
 module.exports = {
-    'visit': function(browser) {
+    tags: ['statement'],
+    'mobile device visit': function(browser) {
         browser
-            .page.statement().visit()
+            .page.statement().mobileVisit()
+    },
+    'Desktop device visit': function(browser) {
+        browser
+            .page.statement().desktopVisit()
             .end()
     }
 };

@@ -1,7 +1,12 @@
 module.exports = {
-    'visit': function(browser) {
+    tags: ['portfolio'],
+    'mobile device visit': function(browser) {
         browser
-            .page.portfolio().visit()
+            .page.portfolio().mobileVisit()
+    },
+    'Desktop device visit': function(browser) {
+        browser
+            .page.portfolio().desktopVisit()
             .end()
     }
 };

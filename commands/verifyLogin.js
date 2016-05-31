@@ -1,19 +1,27 @@
-exports.command = function(token,callback){
+exports.command = function(username,callback){
     callback = callback || function(){};
     var data = this.globals.pages.login;
 
     this
         .url(this.globals.logout_url)
-        .waitForElementVisible('body', 5000)
+        .waitForElementVisible('body', 1000)
+        .url(function(response){
+            console.log('logout successfully', username)
+            this.assert.urlEquals(response.value, data.OnAuthUrl)
+        })
         .url(this.globals.launch_url)
-        .verify.elementPresent(data.tokenInput)
-        .setValue(data.tokenInput, token)
-        .click(data.signinButton)
+        .waitForElementVisible(data.emailTextBox, 1000)
+        .waitForElementVisible(data.passwordTextBox, 1000)
+        .setValue(data.emailTextBox, username)
+        .setValue(data.passwordTextBox, data.password)
+        .waitForElementVisible('button[id=' + data.signinButton + ']', 1000)
+        .click('button[id=' + data.signinButton + ']')
+        .keys(['\uE015', '\uE006'])
         .pause(1000)
         .execute(function(){
-            return (!!document.getElementById(data.tokenInput) == true ? true :  false );
-        },[token],function(result){
-            callback.call(this,result);
+            return (!!document.getElementById(data.emailTextBox));
+        },[username],function(result){
+            callback.call(result);
         });
 
 
