@@ -1,12 +1,14 @@
 module.exports = {
     tags: ['tradingtimes'],
-    'mobile device visit': function(browser) {
-        browser
-            .page.tradingtimes().mobileVisit()
-    },
-    'Desktop device visit': function(browser) {
-        browser
-            .page.tradingtimes().desktopVisit()
-            .end()
+    'tradingtimes page visit': function(browser) {
+        if(browser.globals.isMobile) {
+            browser
+                .page.tradingtimes().mobileVisit()
+                .end()
+        } else {
+            browser
+                .page.tradingtimes().desktopVisit()
+                .end()
+        }
     }
 };

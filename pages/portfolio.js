@@ -1,5 +1,4 @@
 module.exports = function(browser) {
-    var data = browser.globals.pages.portfolio;
     var login = browser.globals.pages.login;
     return {
         tags: ['portfolio'],
@@ -8,9 +7,17 @@ module.exports = function(browser) {
                 .verifyLogin(login.username,function(result){
                     console.log("Login successfully ");
                 })
-                .url(data.url)
+                .url(browser.globals.launch_url)
                 .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
+                .verify.visible('.mobile-nav-btn')
+                .click('a.mobile-nav-btn[href="/portfolio-mobile"]')
+                .waitForElementVisible('body', 3000)
+                .url(function(response){
+                    this.assert.urlContains(response.value, 'portfolio-mobile')
+                })
+                .verify.elementPresent('a.sidebar-btn')
+                .assert.cssClassPresent('a.mobile-nav-btn[href="/portfolio-mobile"]','active')
                 .verify.elementPresent('table')
                 .verify.containsText('table','Ref')
                 .verify.containsText('table','Indicative')
@@ -18,6 +25,9 @@ module.exports = function(browser) {
         },
         desktopVisit: function() { 
             return browser
+                .verifyLogin(login.username,function(result){
+                    console.log("Login successfully ");
+                })
                 .url(browser.globals.launch_url)
                 .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
@@ -28,12 +38,12 @@ module.exports = function(browser) {
                 .verify.elementPresent('div[role="tab"][title="Portfolio"][aria-selected="true"]')
                 .url(function(response){
                     this.assert.urlEquals(response.value, browser.globals.launch_url)
-                })/*Commenting , pending solution to the cause of the failure.
-                .verify.elementPresent('table') //This test suppose to pass without an issue , yet it didn't
+                })
+                /*.verify.elementPresent('table') //This test suppose to pass without an issue , yet it didn't
                 .verify.containsText('table','Ref')
                 .verify.containsText('table','Indicative')
-                .verify.containsText('table','Purchase')
-                */
+                .verify.containsText('table','Purchase')*/
+                
                 
         }
     };

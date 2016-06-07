@@ -1,5 +1,4 @@
 module.exports = function(browser) {
-    var data = browser.globals.pages.statement;
     var login = browser.globals.pages.login;
             
     return {
@@ -8,14 +7,32 @@ module.exports = function(browser) {
                 .verifyLogin(login.username,function(result){
                     console.log("Login verification ");
                 })
-                .url(data.url)
+                .url(browser.globals.launch_url)
                 .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
+                .verify.visible('.mobile-nav-btn')
+                .click('a.mobile-nav-btn[href="/statement-mobile"]')
+                .waitForElementVisible('body', 3000)
+                .url(function(response){
+                    this.assert.urlContains(response.value, 'statement-mobile')
+                })
+                .verify.elementPresent('a.sidebar-btn')
+                .assert.cssClassPresent('a.mobile-nav-btn[href="/statement-mobile"]','active')
                 .verify.elementPresent('[role=tablist]')
                 .verify.containsText('[role=tablist]','TODAY')
+                .verify.elementPresent('div[role="tab"][title="Today"][aria-selected="true"]')
+                .verify.elementPresent('div[role="tab"][title="Yesterday"][aria-selected="false"]')
+                .click('div[role="tab"][title="Yesterday"]')
+                .waitForElementVisible('body', 3000)
+                .verify.elementPresent('div[role="tab"][title="Today"][aria-selected="false"]')
+                .verify.elementPresent('div[role="tab"][title="Yesterday"][aria-selected="true"]')
+
         },
         desktopVisit: function() { 
             return browser
+                .verifyLogin(login.username,function(result){
+                        console.log("Login verification ");
+                })
                 .url(browser.globals.launch_url)
                 .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)

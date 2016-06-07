@@ -1,8 +1,13 @@
 module.exports = {
     tags: ['settings'],
-    'visit': function(browser) {
-        browser
-            .page.settings().visit()
-            .end()
+    'setting page visit': function(browser) {
+        if(browser.globals.isMobile){
+            browser
+                .page.settings().visit()
+                .end()
+        } else {
+            console.log('this test is not available for the device')
+            browser.end();
+        }
     }
 };

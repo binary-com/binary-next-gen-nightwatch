@@ -1,12 +1,15 @@
 module.exports = {
     tags: ['portfolio'],
-    'mobile device visit': function(browser) {
-        browser
-            .page.portfolio().mobileVisit()
-    },
-    'Desktop device visit': function(browser) {
-        browser
-            .page.portfolio().desktopVisit()
-            .end()
+    'Portfolio page visit': function(browser) {
+        if(browser.globals.isMobile) {
+            browser
+                .page.portfolio().mobileVisit()
+                .end()
+        } else {
+            browser
+                .page.portfolio().desktopVisit()
+                .end()
+        }
+        
     }
 };

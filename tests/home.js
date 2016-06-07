@@ -1,6 +1,6 @@
 module.exports = {
     tags: ['home'],
-    'visit': function(browser) {
+    'home page visit': function(browser) {
         browser
             .page.home().goHome()
             .end();

@@ -1,12 +1,14 @@
 module.exports = {
     tags: ['assetindex'],
-    'mobile device visit': function(browser) {
-        browser
-            .page.assetindex().mobileVisit()
-    },
-    'Desktop device visit': function(browser) {
-        browser
-            .page.assetindex().desktopVisit()
-            .end()
+    'assetIndex page visit': function(browser) {
+        if(browser.globals.isMobile) {
+            browser
+                .page.assetindex().mobileVisit()
+                .end()
+        } else {
+            browser
+                .page.assetindex().desktopVisit()
+                .end()
+        }
     }
 };

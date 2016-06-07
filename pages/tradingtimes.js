@@ -1,5 +1,4 @@
 module.exports = function(browser) {
-    var data = browser.globals.pages.tradingtimes;
     var login = browser.globals.pages.login;
     return {
         
@@ -8,10 +7,18 @@ module.exports = function(browser) {
                 .verifyLogin(login.username,function(result){
                     console.log("Login successfully ");
                 })
-                .url(data.url)
+                .url(browser.globals.launch_url)
                 .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
-                .verify.elementPresent('div[role="tab"][title="Trading Times"]', 1000)
+                .verify.visible('.mobile-nav-btn')
+                .click('a.mobile-nav-btn[href="/resources-mobile"]')
+                .waitForElementVisible('body', 3000)
+                .url(function(response){
+                    this.assert.urlContains(response.value, 'resources-mobile')
+                })
+                .verify.elementPresent('a.sidebar-btn')
+                .assert.cssClassPresent('a.mobile-nav-btn[href="/resources-mobile"]','active')
+                .verify.elementPresent('div[role="tab"][title="Trading Times"]')
                 .click('div[role="tab"][title="Trading Times"]')
                 .keys(['\uE015', '\uE006'])
                 .verify.elementPresent('div[role="tab"][title="Trading Times"][aria-selected="true"]')
@@ -22,6 +29,9 @@ module.exports = function(browser) {
         },
         desktopVisit: function() { 
             return browser
+                .verifyLogin(login.username,function(result){
+                    console.log("Login successfully ");
+                })
                 .url(browser.globals.launch_url)
                 .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
