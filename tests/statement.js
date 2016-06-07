@@ -1,12 +1,14 @@
 module.exports = {
     tags: ['statement'],
-    'mobile device visit': function(browser) {
-        browser
-            .page.statement().mobileVisit()
-    },
-    'Desktop device visit': function(browser) {
-        browser
-            .page.statement().desktopVisit()
-            .end()
+    'statement page visit': function(browser) {
+        if(browser.globals.isMobile) {
+            browser
+                .page.statement().mobileVisit()
+                .end()
+        } else {
+            browser
+                .page.statement().desktopVisit()
+                .end()
+        }
     }
 };

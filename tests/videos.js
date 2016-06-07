@@ -1,14 +1,16 @@
 module.exports = {
     tags: ['videos'],
-    'mobile device visit': function(browser) {
-        browser
-            .page.videos().mobileVisit()
-    },
-    'Desktop device visit': function(browser) {
-        browser
-            .page.videos().desktopVisit()
-            .end()
+    'videos page visit': function(browser) {
+        if(browser.globals.isMobile) {
+            browser
+                .page.videos().mobileVisit()
+                .end()
+        } else {
+            browser
+                .page.videos().desktopVisit()
+                .end()
+        }
+           
     }
-    
     
 };

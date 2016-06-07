@@ -1,5 +1,4 @@
 module.exports = function(browser) {
-    var data = browser.globals.pages.videos;
     var login = browser.globals.pages.login;
     return {
         mobileVisit: function() {
@@ -7,9 +6,17 @@ module.exports = function(browser) {
                 .verifyLogin(login.username,function(result){
                     console.log("Login verification ");
                 })
-                .url(data.url)
+                .url(browser.globals.launch_url)
                 .waitForElementVisible('body', 3000)
-                .waitForElementVisible('div[role="tab"][title="Binary TV"]', 1000)
+                .verify.elementNotPresent(login.emailTextBox)
+                .verify.visible('.mobile-nav-btn')
+                .click('a.mobile-nav-btn[href="/news-mobile"]')
+                .waitForElementVisible('body', 3000)
+                .url(function(response){
+                    this.assert.urlContains(response.value, 'news-mobile')
+                })
+                .verify.elementPresent('a.sidebar-btn')
+                .assert.cssClassPresent('a.mobile-nav-btn[href="/news-mobile"]','active')
                 .click('div[role="tab"][title="Binary TV"]')
                 .keys(['\uE015', '\uE006'])
                 .verify.elementPresent('div[role="tab"][title="Binary TV"][aria-selected="true"]')
@@ -19,6 +26,9 @@ module.exports = function(browser) {
         },
         desktopVisit: function() { 
             return browser
+                .verifyLogin(login.username,function(result){
+                    console.log("Login successfully ");
+                })
                 .url(browser.globals.launch_url)
                 .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)

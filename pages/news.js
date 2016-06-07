@@ -1,5 +1,4 @@
 module.exports = function(browser) {
-    var data = browser.globals.pages.news;
     var login = browser.globals.pages.login;
     return {
         mobileVisit: function() { 
@@ -7,16 +6,27 @@ module.exports = function(browser) {
                 .verifyLogin(login.username,function(result){
                     console.log("Login successfully ");
                 })
-                .url(data.url)
+                .url(browser.globals.launch_url)
                 .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
+                .verify.visible('.mobile-nav-btn')
+                .click('a.mobile-nav-btn[href="/news-mobile"]')
+                .waitForElementVisible('body', 3000)
+                .url(function(response){
+                    this.assert.urlContains(response.value, 'news-mobile')
+                })
+                .verify.elementPresent('a.sidebar-btn')
+                .assert.cssClassPresent('a.mobile-nav-btn[href="/news-mobile"]','active')
                 .click('div[role="tab"][title="Daily Report"]')
                 .keys(['\uE015', '\uE006'])
                 .verify.elementPresent('div[role="tab"][title="Daily Report"][aria-selected="true"]')
-                .verify.elementPresent(data.articleClass)
+                .verify.elementPresent('a.article-preview')
         },
         desktopVisit: function() { 
             return browser
+                .verifyLogin(login.username,function(result){
+                    console.log("Login successfully ");
+                })
                 .url(browser.globals.launch_url)
                 .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
@@ -25,7 +35,7 @@ module.exports = function(browser) {
                 .click('div[role="tab"][title="News"]')
                 .keys(['\uE015', '\uE006'])
                 .verify.elementPresent('div[role="tab"][title="News"][aria-selected="true"]')
-                .verify.elementPresent(data.articleClass)
+                .verify.elementPresent('a.article-preview')
         }
     };
 

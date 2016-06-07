@@ -10,10 +10,10 @@ exports.command = function(username, callback){
         .click('button[id=' + element.login.signinButton + ']')
         .keys(['\uE015', '\uE006'])
         .pause(1000)
-        .execute(function() {
+        .execute(function(data) {
             return (!!document.getElementById(element.login.emailTextBox));
-        },[username], function(result){
-            callback.call(this,result);
+        },[], function(result){
+            return callback.call(this,result);
         });
 
     return this;

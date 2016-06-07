@@ -1,16 +1,27 @@
 module.exports = function(browser) {
-    var data = browser.globals.pages.assetindex;
     var login = browser.globals.pages.login;
+    var global = browser.globals;
     return {
         
         mobileVisit: function() { 
             return browser
-                .verifyLogin(login.username,function(result){
+                .verifyLogin(login.username,function(browser,result){
                     console.log("Login successfully ");
                 })
-                .url(data.url)
+                .url(global.launch_url)
                 .waitForElementVisible('body', 3000)
+                .url(function(response){
+                    this.assert.urlEquals(response.value, global.launch_url)
+                })
                 .verify.elementNotPresent(login.emailTextBox)
+                .verify.visible('.mobile-nav-btn')
+                .click('a.mobile-nav-btn[href="/resources-mobile"]')
+                .waitForElementVisible('body', 3000)
+                .url(function(response){
+                    this.assert.urlContains(response.value, 'resources-mobile')
+                })
+                .verify.elementPresent('a.sidebar-btn')
+                .assert.cssClassPresent('a.mobile-nav-btn[href="/resources-mobile"]','active')
                 .verify.elementPresent('div[role="tab"][title="Asset Index"]')
                 .click('div[role="tab"][title="Asset Index"]')
                 .keys(['\uE015', '\uE006'])
@@ -22,6 +33,9 @@ module.exports = function(browser) {
         },
         desktopVisit: function() { 
             return browser
+                .verifyLogin(login.username,function(result){
+                    console.log("Login successfully ");
+                })
                 .url(browser.globals.launch_url)
                 .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)

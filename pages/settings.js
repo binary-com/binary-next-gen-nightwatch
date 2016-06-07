@@ -1,13 +1,12 @@
 module.exports = function(browser) {
     return {
         visit: function() {
-            var data = browser.globals.pages.settings;
             var login = browser.globals.pages.login;
             return browser
                 .verifyLogin(login.username,function(result){
                     console.log("Login verification ");
                 })
-                .url(data.url)
+                .url(browser.globals.launch_url)
                 .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
                 .click('label#hamburger-btn')

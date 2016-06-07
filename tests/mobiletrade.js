@@ -1,8 +1,13 @@
 module.exports = {
     tags: ['mobiletrade'],
-    'visit': function(browser) {
-        browser
-            .page.mobiletrade().trade()
-            .end()
+    'mobile trading page visit': function(browser) {
+        if(browser.globals.isMobile){
+            browser
+                .page.mobiletrade().trade()
+                .end()
+        } else {
+            console.log('this test is not available for the device')
+            browser.end();
+        }
     }
 };

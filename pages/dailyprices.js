@@ -1,5 +1,4 @@
 module.exports = function(browser) {
-    var data = browser.globals.pages.portfolio;
     var login = browser.globals.pages.login;
     return {
         visit: function() { 

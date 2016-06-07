@@ -136,7 +136,7 @@
             "desiredCapabilities": {
                 "browserName": "iPhone",
                 "platform": "MAC",
-                "device": "iPhone 5S",
+                "device": "iPhone 6S",
                 "javascriptEnabled": true,
                 "acceptSslCerts": true,
                 "browserstack.user": "jeanyvessireau1",
