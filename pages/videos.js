@@ -3,25 +3,23 @@ module.exports = function(browser) {
     return {
         mobileVisit: function() {
             return browser
-                .verifyLogin(login.username,function(result){
+                .verifyLoginMobile(login.username,function(result){
                     console.log("Login verification ");
                 })
-                .url(browser.globals.launch_url)
-                .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
-                .verify.visible('.mobile-nav-btn')
-                .click('a.mobile-nav-btn[href="/news-mobile"]')
+                .verify.visible('a.mobile-nav-btn[href="/news"]')
+                .click('a.mobile-nav-btn[href="/news"]')
                 .waitForElementVisible('body', 3000)
                 .url(function(response){
-                    this.assert.urlContains(response.value, 'news-mobile')
+                    this.assert.urlContains(response.value, 'news')
                 })
                 .verify.elementPresent('a.sidebar-btn')
-                .assert.cssClassPresent('a.mobile-nav-btn[href="/news-mobile"]','active')
+                .assert.cssClassPresent('a.mobile-nav-btn[href="/news"]','active')
                 .click('div[role="tab"][title="Binary TV"]')
                 .keys(['\uE015', '\uE006'])
                 .verify.elementPresent('div[role="tab"][title="Binary TV"][aria-selected="true"]')
                 .verify.elementNotPresent(login.emailTextBox)
-                .verify.elementPresent('ul.video-list')
+                .verify.elementPresent('div.video-list')
                 .verify.elementPresent('a.video-thumbnail')
         },
         desktopVisit: function() { 
@@ -29,15 +27,13 @@ module.exports = function(browser) {
                 .verifyLogin(login.username,function(result){
                     console.log("Login successfully ");
                 })
-                .url(browser.globals.launch_url)
-                .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
                 .waitForElementVisible('.workspace-panel', 1000)
                 .verify.elementPresent('div[role="tab"][title="Video"]')
                 .click('div[role="tab"][title="Video"]')
                 .keys(['\uE015', '\uE006'])
                 .verify.elementPresent('div[role="tab"][title="Video"][aria-selected="true"]')
-                .verify.elementPresent('ul.video-list')
+                .verify.elementPresent('div.video-list')
                 .verify.elementPresent('a.video-thumbnail')
                 
         }

@@ -4,25 +4,26 @@ module.exports = function(browser) {
     return {
         mobileVisit: function() {
             return browser
-                .verifyLogin(login.username,function(result){
+                .verifyLoginMobile(login.username,function(result){
                     console.log("Login verification ");
                 })
-                .url(browser.globals.launch_url)
-                .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
-                .verify.visible('.mobile-nav-btn')
-                .click('a.mobile-nav-btn[href="/statement-mobile"]')
+                .click('a.mobile-nav-btn[href="/statement"]')
+                .keys(['\uE015', '\uE006'])
+                .pause(1000)
                 .waitForElementVisible('body', 3000)
                 .url(function(response){
-                    this.assert.urlContains(response.value, 'statement-mobile')
+                    this.assert.urlContains(response.value, 'statement')
                 })
                 .verify.elementPresent('a.sidebar-btn')
-                .assert.cssClassPresent('a.mobile-nav-btn[href="/statement-mobile"]','active')
+                .assert.cssClassPresent('a.mobile-nav-btn[href="/statement"]','active')
                 .verify.elementPresent('[role=tablist]')
                 .verify.containsText('[role=tablist]','TODAY')
                 .verify.elementPresent('div[role="tab"][title="Today"][aria-selected="true"]')
                 .verify.elementPresent('div[role="tab"][title="Yesterday"][aria-selected="false"]')
                 .click('div[role="tab"][title="Yesterday"]')
+                .keys(['\uE015', '\uE006'])
+                .pause(1000)
                 .waitForElementVisible('body', 3000)
                 .verify.elementPresent('div[role="tab"][title="Today"][aria-selected="false"]')
                 .verify.elementPresent('div[role="tab"][title="Yesterday"][aria-selected="true"]')
@@ -33,16 +34,13 @@ module.exports = function(browser) {
                 .verifyLogin(login.username,function(result){
                         console.log("Login verification ");
                 })
-                .url(browser.globals.launch_url)
-                .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
                 .waitForElementVisible('.workspace-panel', 1000)
                 .verify.elementPresent('div[role="tab"][title="Statement"]')
                 .click('div[role="tab"][title="Statement"]')
                 .keys(['\uE015', '\uE006'])
+                .pause(1000)
                 .verify.elementPresent('div[role="tab"][title="Statement"][aria-selected="true"]')
-                .verify.elementPresent('table')
-                .verify.containsText('[role=tablist]','TODAY')
                 
         }
     };

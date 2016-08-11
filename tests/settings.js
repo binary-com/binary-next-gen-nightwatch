@@ -3,11 +3,12 @@ module.exports = {
     'setting page visit': function(browser) {
         if(browser.globals.isMobile){
             browser
-                .page.settings().visit()
+                .page.settings().mobileVisit()
                 .end()
         } else {
-            console.log('this test is not available for the device')
-            browser.end();
+             browser
+                .page.settings().desktopVisit()
+                .end()
         }
     }
 };
