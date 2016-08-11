@@ -2,6 +2,10 @@ exports.command = function(username, callback){
     var element = this.globals.pages;
     callback = callback || function(){};
     this
+        .waitForElementPresent('a[class="signin-button btn-primary"]', 1000)
+        .click('a[class="signin-button btn-primary"]')
+        .keys(['\uE015', '\uE006'])
+        .pause(1000)
         .waitForElementPresent(element.login.emailTextBox, 1000)
         .waitForElementPresent(element.login.passwordTextBox, 1000)
         .setValue(element.login.emailTextBox, username)

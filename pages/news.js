@@ -3,20 +3,19 @@ module.exports = function(browser) {
     return {
         mobileVisit: function() { 
             return browser
-                .verifyLogin(login.username,function(result){
+                .verifyLoginMobile(login.username,function(result){
                     console.log("Login successfully ");
                 })
-                .url(browser.globals.launch_url)
-                .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
-                .verify.visible('.mobile-nav-btn')
-                .click('a.mobile-nav-btn[href="/news-mobile"]')
+                .click('a.mobile-nav-btn[href="/news"]')
+                .keys(['\uE015', '\uE006'])
+                .pause(1000)
                 .waitForElementVisible('body', 3000)
                 .url(function(response){
-                    this.assert.urlContains(response.value, 'news-mobile')
+                    this.assert.urlContains(response.value, 'news')
                 })
                 .verify.elementPresent('a.sidebar-btn')
-                .assert.cssClassPresent('a.mobile-nav-btn[href="/news-mobile"]','active')
+                .assert.cssClassPresent('a.mobile-nav-btn[href="/news"]','active')
                 .click('div[role="tab"][title="Daily Report"]')
                 .keys(['\uE015', '\uE006'])
                 .verify.elementPresent('div[role="tab"][title="Daily Report"][aria-selected="true"]')
@@ -27,13 +26,12 @@ module.exports = function(browser) {
                 .verifyLogin(login.username,function(result){
                     console.log("Login successfully ");
                 })
-                .url(browser.globals.launch_url)
-                .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
-                .waitForElementVisible('.workspace-panel', 1000)
+                .waitForElementVisible('div[id="right-tab-list"][role="tablist"]', 1000)
                 .verify.elementPresent('div[role="tab"][title="News"]')
                 .click('div[role="tab"][title="News"]')
                 .keys(['\uE015', '\uE006'])
+                .pause(1000)
                 .verify.elementPresent('div[role="tab"][title="News"][aria-selected="true"]')
                 .verify.elementPresent('a.article-preview')
         }

@@ -4,23 +4,25 @@ module.exports = function(browser) {
         
         mobileVisit: function() { 
             return browser
-                .verifyLogin(login.username,function(result){
+                .verifyLoginMobile(login.username,function(result){
                     console.log("Login successfully ");
                 })
-                .url(browser.globals.launch_url)
-                .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
-                .verify.visible('.mobile-nav-btn')
-                .click('a.mobile-nav-btn[href="/resources-mobile"]')
+                .verify.visible('a.mobile-nav-btn[href="/resources"]')
+                .click('a.mobile-nav-btn[href="/resources"]')
+                .keys(['\uE015', '\uE006'])
+                .pause(1000)
                 .waitForElementVisible('body', 3000)
                 .url(function(response){
-                    this.assert.urlContains(response.value, 'resources-mobile')
+                    this.assert.urlContains(response.value, 'resources')
                 })
                 .verify.elementPresent('a.sidebar-btn')
-                .assert.cssClassPresent('a.mobile-nav-btn[href="/resources-mobile"]','active')
+                .assert.cssClassPresent('a.mobile-nav-btn[href="/resources"]','active')
                 .verify.elementPresent('div[role="tab"][title="Trading Times"]')
                 .click('div[role="tab"][title="Trading Times"]')
                 .keys(['\uE015', '\uE006'])
+                .pause(1000)
+                .waitForElementVisible('body', 3000)
                 .verify.elementPresent('div[role="tab"][title="Trading Times"][aria-selected="true"]')
                 .verify.elementPresent('.market-submarket-picker')
                 .verify.containsText('table','Opens')
@@ -32,10 +34,8 @@ module.exports = function(browser) {
                 .verifyLogin(login.username,function(result){
                     console.log("Login successfully ");
                 })
-                .url(browser.globals.launch_url)
-                .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
-                .waitForElementVisible('.workspace-panel', 1000)
+                .waitForElementVisible('div[id="right-tab-list"][role="tablist"]', 1000)
                 .verify.elementPresent('div[role="tab"][title="Trading Times"]')
                 .click('div[role="tab"][title="Trading Times"]')
                 .keys(['\uE015', '\uE006'])

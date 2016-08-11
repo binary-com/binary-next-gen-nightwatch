@@ -27,13 +27,12 @@ module.exports = function(browser) {
                     .url(function(response){
                         this.assert.urlEquals(response.value, data.pages.login.OnAuthUrl)
                     })
-                    .verifyLogin('wrongUser', function(result){
+                    .login('wrongUser@gmail.com', function(result){
                         console.log('The login failed : ');
                     })
-                    //.url(data.launch_url) //force a refressh for the error field 
                     .waitForElementVisible('body', 1000)
-                   // .verify.elementPresent(login.errorClass) //The error is not updating for some reason which is not clear yet
-                    //.verify.containsText(login.errorClass,'Invalid email and password combination.')
+                    .verify.elementPresent(login.errorClass)
+                    .verify.containsText(login.errorClass,'Invalid email and password combination.')
                     .url(function(response){
                         this.assert.urlEquals(response.value, data.pages.login.OnAuthUrl) //The assert on the verify the login failure
                     })

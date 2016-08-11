@@ -5,23 +5,22 @@ module.exports = function(browser) {
         
         mobileVisit: function() { 
             return browser
-                .verifyLogin(login.username,function(browser,result){
+                .verifyLoginMobile(login.username,function(browser,result){
                     console.log("Login successfully ");
                 })
-                .url(global.launch_url)
-                .waitForElementVisible('body', 3000)
                 .url(function(response){
                     this.assert.urlEquals(response.value, global.launch_url)
                 })
                 .verify.elementNotPresent(login.emailTextBox)
-                .verify.visible('.mobile-nav-btn')
-                .click('a.mobile-nav-btn[href="/resources-mobile"]')
+                .click('a.mobile-nav-btn[href="/resources"]')
+                .keys(['\uE015', '\uE006'])
+                .pause(1000)
                 .waitForElementVisible('body', 3000)
                 .url(function(response){
-                    this.assert.urlContains(response.value, 'resources-mobile')
+                    this.assert.urlContains(response.value, 'resources')
                 })
                 .verify.elementPresent('a.sidebar-btn')
-                .assert.cssClassPresent('a.mobile-nav-btn[href="/resources-mobile"]','active')
+                .assert.cssClassPresent('a.mobile-nav-btn[href="/resources"]','active')
                 .verify.elementPresent('div[role="tab"][title="Asset Index"]')
                 .click('div[role="tab"][title="Asset Index"]')
                 .keys(['\uE015', '\uE006'])
@@ -36,14 +35,12 @@ module.exports = function(browser) {
                 .verifyLogin(login.username,function(result){
                     console.log("Login successfully ");
                 })
-                .url(browser.globals.launch_url)
-                .waitForElementVisible('body', 3000)
                 .verify.elementNotPresent(login.emailTextBox)
-                .waitForElementVisible('.workspace-panel', 1000)
+                .waitForElementVisible('div[id="right-tab-list"][role="tablist"]', 1000)
                 .verify.elementPresent('div[role="tab"][title="Asset Index"]')
                 .click('div[role="tab"][title="Asset Index"]')
                 .keys(['\uE015', '\uE006'])
-                .verify.elementPresent('div[role="tab"][title="Asset Index"][aria-selected="true"]')
+                .waitForElementVisible('div[role="tab"][title="Asset Index"][aria-selected="true"]', 1000)
                 .verify.elementPresent('.market-submarket-picker')
                 .verify.containsText('table','Up/Down')
                 .verify.containsText('table','Touch/No Touch')

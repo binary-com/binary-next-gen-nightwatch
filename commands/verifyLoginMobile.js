@@ -22,10 +22,6 @@ exports.command = function(username,callback){
         .click('button[id=' + data.signinButton + ']')
         .keys(['\uE015', '\uE006'])
         .pause(1000)
-        .waitForElementVisible('.modal > div > button', 3000)
-        .click('.modal > div > button') //Reality Check
-        .keys(['\uE015', '\uE006'])
-        .pause(1000)
         .waitForElementVisible('body', 1000)
         .execute(function(data){
             return (!!document.getElementById(data.emailTextBox));
