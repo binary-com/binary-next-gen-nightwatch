@@ -31,7 +31,7 @@ module.exports = function(browser) {
                 .pause(1000)
                 .verify.elementPresent('div[role="tab"][title="Portfolio"][aria-selected="true"]')
                 .url(function(response){
-                    this.assert.urlEquals(response.value, browser.globals.launch_url)
+                    this.assert.urlEquals(response.value, browser.launchUrl)
                 })
                 
                 

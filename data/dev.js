@@ -15,18 +15,16 @@ var self = module.exports = {
             done();
         });
     },
-    launch_url: "https://app.binary.com",
-    signout_url: "https://app.binary.com/signout",
     pages:{
         login:{
             tokenInput: '#token-input',
-            username : 'test8@mailinator.com',
-            password: 'Test1234',
+            username : 'ressurectednightwatchnextgen@mailinator.com',
+            password: '80B0FhnmqBEf',
             onAuthUrl: 'https://oauth.binary.com/oauth2/authorize?app_id=1006&l=EN', 
             emailTextBox: '#txtEmail',
             passwordTextBox: '#txtPass',
             signinButton: 'btnLogin',
-            errorClass: '.errorfield',
+            errorClass: '.error-msg',
         }
 
     },

@@ -14,7 +14,7 @@ module.exports = function(browser) {
                 .keys(['\uE015', '\uE006'])
                 .verify.elementPresent('div[role="tab"][title="Watchlist"][aria-selected="true"]')
                 .url(function(response){
-                    this.assert.urlEquals(response.value, browser.globals.launch_url)
+                    this.assert.urlEquals(response.value, browser.launchUrl)
                 })
                 
                 

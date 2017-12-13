@@ -1,5 +1,6 @@
 module.exports = function(browser) {
     var login = browser.globals.pages.login;
+    var tradingTimesTable = '.trading-times-data > table';
     return {
         
         mobileVisit: function() { 
@@ -25,9 +26,9 @@ module.exports = function(browser) {
                 .waitForElementVisible('body', 3000)
                 .verify.elementPresent('div[role="tab"][title="Trading Times"][aria-selected="true"]')
                 .verify.elementPresent('.market-submarket-picker')
-                .verify.containsText('table','Opens')
-                .verify.containsText('table','Closes')
-                .verify.containsText('table','Settles')
+                .verify.containsText(tradingTimesTable,'Opens')
+                .verify.containsText(tradingTimesTable,'Closes')
+                .verify.containsText(tradingTimesTable,'Settles')
         },
         desktopVisit: function() { 
             return browser
@@ -41,9 +42,9 @@ module.exports = function(browser) {
                 .keys(['\uE015', '\uE006'])
                 .verify.elementPresent('div[role="tab"][title="Trading Times"][aria-selected="true"]')
                 .verify.elementPresent('.market-submarket-picker')
-                .verify.containsText('table','Opens')
-                .verify.containsText('table','Closes')
-                .verify.containsText('table','Settles')
+                .verify.containsText(tradingTimesTable,'Opens')
+                .verify.containsText(tradingTimesTable,'Closes')
+                .verify.containsText(tradingTimesTable,'Settles')
                 
         }
     };

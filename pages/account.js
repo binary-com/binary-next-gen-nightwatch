@@ -5,7 +5,7 @@ module.exports = function(browser) {
             var username = data.pages.login.username;
       
             return  browser
-                    .url(data.launch_url)
+                    .url(browser.launchUrl)
                     .waitForElementVisible('body', 3000)
                     .url(function(response){
                         this.assert.urlEquals(response.value, data.pages.login.OnAuthUrl)
@@ -22,7 +22,7 @@ module.exports = function(browser) {
             var login = browser.globals.pages.login;
 
             return  browser
-                    .url(data.launch_url)
+                    .url(browser.launchUrl)
                     .waitForElementVisible('body', 3000)
                     .url(function(response){
                         this.assert.urlEquals(response.value, data.pages.login.OnAuthUrl)
@@ -32,7 +32,7 @@ module.exports = function(browser) {
                     })
                     .waitForElementVisible('body', 1000)
                     .verify.elementPresent(login.errorClass)
-                    .verify.containsText(login.errorClass,'Invalid email and password combination.')
+                    .verify.containsText(login.errorClass, 'Incorrect email or password.')
                     .url(function(response){
                         this.assert.urlEquals(response.value, data.pages.login.OnAuthUrl) //The assert on the verify the login failure
                     })

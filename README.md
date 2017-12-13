@@ -7,18 +7,21 @@ In order to run the tests locally, you have to have Selenium server running on y
 To install and run Selenium, install via NPM:
 
 	npm install selenium-standalone -g
+In project directory, run the following to install selenium dependencies:
 
-Then run:
+	selenium-standalone install
 
-	start-selenium
+To start selenium, run:
 
-Run a single test:
+	selenium-standalone start
 
-	nightwatch -t tests/pom/account/createVirtualAccount
+Once selenium is running, you will need to open another terminal to run your nightwatch tests. Assuming you have next-gen running in http://localhost:3000, you can execute all nightwatch tests via:
 
-Run a group of tests:
+	nightwatch
 
-	nightwatch -g tests/pom
+To run a specific test (all tests are located in `tests/`):
+
+	nightwatch -t tests/account.js
 
 Run all tests via BrowserStack
 
