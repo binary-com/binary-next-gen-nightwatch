@@ -1,6 +1,7 @@
 module.exports = function(browser) {
     var login = browser.globals.pages.login;
     var global = browser.globals;
+    var assetDataTable = '.asset-index-data > table';
     return {
         
         mobileVisit: function() { 
@@ -26,9 +27,9 @@ module.exports = function(browser) {
                 .keys(['\uE015', '\uE006'])
                 .verify.elementPresent('div[role="tab"][title="Asset Index"][aria-selected="true"]')
                 .verify.elementPresent('.market-submarket-picker')
-                .verify.containsText('table','Up/Down')
-                .verify.containsText('table','Touch/No Touch')
-                .verify.containsText('table','Ends In/Out')
+                .verify.containsText(assetDataTable,'Up/Down')
+                .verify.containsText(assetDataTable,'Touch/No Touch')
+                .verify.containsText(assetDataTable,'Ends In/Out')
         },
         desktopVisit: function() { 
             return browser
@@ -42,9 +43,9 @@ module.exports = function(browser) {
                 .keys(['\uE015', '\uE006'])
                 .waitForElementVisible('div[role="tab"][title="Asset Index"][aria-selected="true"]', 1000)
                 .verify.elementPresent('.market-submarket-picker')
-                .verify.containsText('table','Up/Down')
-                .verify.containsText('table','Touch/No Touch')
-                .verify.containsText('table','Ends In/Out')
+                .verify.containsText(assetDataTable,'Up/Down')
+                .verify.containsText(assetDataTable,'Touch/No Touch')
+                .verify.containsText(assetDataTable,'Ends In/Out')
                 
         }
     };

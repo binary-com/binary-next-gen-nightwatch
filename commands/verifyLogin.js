@@ -2,6 +2,7 @@ exports.command = function(username,callback){
     callback = callback || function(){};
     var data = this.globals.pages.login;
     var realityCheckModal = '.modal > div > button';
+    var browser = this;
     
     this
         .url(this.globals.logout_url)
@@ -12,12 +13,11 @@ exports.command = function(username,callback){
         })
         .url(this.launchUrl)
         .login(username, callback)
+        .pause(1500)
         .element('css selector', realityCheckModal, function(result){
             if (result.status != -1){
                 // if reality check exists, close it
-                this
-                    .waitForElementVisible(realityCheckModal, 3000)
-                    .click(realityCheckModal)
+                this.click(realityCheckModal)
             }
         })
         .keys(['\uE015', '\uE006'])

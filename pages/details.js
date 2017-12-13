@@ -1,5 +1,6 @@
 module.exports = function(browser) {
     var login = browser.globals.pages.login;
+    var dailyPricesTable = '.daily-prices-card > table';
     return {
         mobileVisit: function() { 
             return browser
@@ -18,7 +19,7 @@ module.exports = function(browser) {
                 .assert.cssClassPresent('a.mobile-nav-btn[href="/info"]','active')
 
                 //Verify for subtab selected tab
-                .verify.elementPresent('.asset-info-card div[role="tab"][title="Details"][aria-selected="true"]')
+                .verify.elementPresent('.examine-asset-card div[role="tab"][title="Details"][aria-selected="true"]')
                 .verify.elementPresent('.asset-details')
                 .verify.elementPresent('table:first-of-type')
                 .verify.containsText('.asset-details table:first-of-type','Opens')
@@ -29,20 +30,20 @@ module.exports = function(browser) {
                 .verify.containsText('.asset-details table:nth-of-type(2)','Durations')
 
                 //Select Daily Prices from the sub tabs
-                .verify.elementPresent('.asset-info-card div[role="tab"][title="Daily Prices"]')
+                .verify.elementPresent('.examine-asset-card div[role="tab"][title="Daily Prices"]')
                 .click('div[role="tab"][title="Daily Prices"]')
                 .keys(['\uE015', '\uE006'])
-                .verify.elementPresent('.asset-info-card div[role="tab"][title="Daily Prices"][aria-selected="true"]')
-                .verify.elementPresent('table')
-                .verify.containsText('table','Date')
-                .verify.containsText('table','Open')
-                .verify.containsText('table','High')
+                .verify.elementPresent('.examine-asset-card div[role="tab"][title="Daily Prices"][aria-selected="true"]')
+                .verify.elementPresent(dailyPricesTable)
+                .verify.containsText(dailyPricesTable,'Date')
+                .verify.containsText(dailyPricesTable,'Open')
+                .verify.containsText(dailyPricesTable,'High')
 
                 //Select DIgit Stats from the sub tabs
-                .verify.elementPresent('.asset-info-card div[role="tab"][title="Digit Stats"]')
+                .verify.elementPresent('.examine-asset-card div[role="tab"][title="Digit Stats"]')
                 .click('div[role="tab"][title="Digit Stats"]')
                 .keys(['\uE015', '\uE006'])
-                .verify.elementPresent('.asset-info-card div[role="tab"][title="Digit Stats"][aria-selected="true"]')
+                .verify.elementPresent('.examine-asset-card div[role="tab"][title="Digit Stats"][aria-selected="true"]')
                 
         },
         desktopVisit: function() { 
@@ -61,7 +62,7 @@ module.exports = function(browser) {
                 .verify.elementPresent('div[role="tab"][title="Details"][aria-selected="true"]')
 
                 //Verify for subtab selected tab
-                .verify.elementPresent('.asset-info-card div[role="tab"][title="Details"][aria-selected="true"]')
+                .verify.elementPresent('.examine-asset-card div[role="tab"][title="Details"][aria-selected="true"]')
                 .verify.elementPresent('.asset-details')
                 .verify.elementPresent('table:first-of-type')
                 .verify.containsText('.asset-details table:first-of-type','Opens')
@@ -72,20 +73,24 @@ module.exports = function(browser) {
                 .verify.containsText('.asset-details table:nth-of-type(2)','Durations')
 
                 //Select Daily Prices from the sub tabs
-                .verify.elementPresent('.asset-info-card div[role="tab"][title="Daily Prices"]')
+                .verify.elementPresent('.examine-asset-card div[role="tab"][title="Daily Prices"]')
                 .click('div[role="tab"][title="Daily Prices"]')
                 .keys(['\uE015', '\uE006'])
-                .verify.elementPresent('.asset-info-card div[role="tab"][title="Daily Prices"][aria-selected="true"]')
-                .verify.elementPresent('table')
-                .verify.containsText('table','Date')
-                .verify.containsText('table','Open')
-                .verify.containsText('table','High')
+                .verify.elementPresent('.examine-asset-card div[role="tab"][title="Daily Prices"][aria-selected="true"]')
+                .verify.elementPresent('.daily-prices-card')
+                .click('.examine-asset-picker')
+                .click('.asset-list table:first-of-type tr:nth-of-type(2)')
+                .waitForElementPresent(dailyPricesTable, 2000)
+                .verify.containsText(dailyPricesTable,'Date')
+                .verify.containsText(dailyPricesTable,'Open')
+                .verify.containsText(dailyPricesTable,'High')
 
                 //Select DIgit Stats from the sub tabs
-                .verify.elementPresent('.asset-info-card div[role="tab"][title="Digit Stats"]')
-                .click('div[role="tab"][title="Digit Stats"]')
+                .pause(5000)
+                .verify.elementPresent('.examine-asset-card div[role="tab"][title="Digit Stats"]')
+                .click('.examine-asset-card div[role="tab"][title="Digit Stats"]')
                 .keys(['\uE015', '\uE006'])
-                .verify.elementPresent('.asset-info-card div[role="tab"][title="Digit Stats"][aria-selected="true"]')
+                .verify.elementPresent('.examine-asset-card div[role="tab"][title="Digit Stats"][aria-selected="true"]')
                 
         }
     };
