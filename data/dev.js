@@ -15,8 +15,6 @@ var self = module.exports = {
             done();
         });
     },
-    launch_url: "https://app.binary.com",
-    signout_url: "https://app.binary.com/signout",
     pages:{
         login:{
             tokenInput: '#token-input',
@@ -26,7 +24,7 @@ var self = module.exports = {
             emailTextBox: '#txtEmail',
             passwordTextBox: '#txtPass',
             signinButton: 'btnLogin',
-            errorClass: '.errorfield',
+            errorClass: '.error-msg',
         }
 
     },

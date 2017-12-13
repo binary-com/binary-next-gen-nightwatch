@@ -9,7 +9,7 @@ module.exports = function(browser) {
                     console.log("Login successfully ");
                 })
                 .url(function(response){
-                    this.assert.urlEquals(response.value, global.launch_url)
+                    this.assert.urlEquals(response.value, this.launchUrl)
                 })
                 .verify.elementNotPresent(login.emailTextBox)
                 .click('a.mobile-nav-btn[href="/resources"]')

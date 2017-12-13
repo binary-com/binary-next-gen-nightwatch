@@ -13,7 +13,7 @@ module.exports = function(browser){
                 .waitForElementVisible('p.errorfield', 3000)
                 .verify.elementPresent('.trade-panel')
                 .url(function(response){
-                    this.assert.urlEquals(response.value, global.launch_url)
+                    this.assert.urlEquals(response.value, this.launchUrl)
                 })
                 
         },
